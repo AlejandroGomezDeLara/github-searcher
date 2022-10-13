@@ -21,7 +21,7 @@ export class GithubService {
 
   getUserAndRepositories(name:string):Observable<any>{
     const userUrl=`https://api.github.com/users/${name}`;
-    const repositoriesUrl=`https://api.github.com/users/${name}/repos?page=1&per_page=1000`;
+    const repositoriesUrl=`https://api.github.com/users/${name}/repos?page=1&per_page=50`;
 
    return this.http.get(userUrl).pipe(
       switchMap(user => this.http.get(repositoriesUrl).pipe(

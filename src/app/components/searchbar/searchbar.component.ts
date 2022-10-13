@@ -28,6 +28,7 @@ export class SearchbarComponent implements OnInit {
     });
   }
 
+
   public filterRepositories():void{
     this.filteredRepositories=this.repositories?.filter(x=>x.name?.includes(this.form.value.name));
     //Una vez asignados, filtramos por lenguaje si hay lenguajes seleccionados
@@ -36,20 +37,9 @@ export class SearchbarComponent implements OnInit {
     else
       this.sentEvent(this.filterReposByLanguages());
   }
-
-  public sentEvent(repositories:Repository[]):void{
-    this.onFilter.emit(repositories);      
-  }
   
-  /* Evento para mostrar de nuevo todos los repositorios al borrar */
-  public onDelete():void{
-    if(this.form.value.name == ''){
-      if(this.repositories) 
-        this.sentEvent(this.repositories);  
-    }
-  }
 
-  /* Filtramos por language y enviamos el evento*/
+  /* Asociar lenguajes seleccionados */
   public onCheckChange(event:any):void{
     let language=event.target.value;
     if(event.target.checked){
@@ -61,6 +51,7 @@ export class SearchbarComponent implements OnInit {
     }
   }
 
+  /* Filtrado por lenguajes */
   public filterReposByLanguages():Repository[]{
     let filteredRepositories:Repository[]=[];
     if(this.selectedLanguages){
@@ -75,4 +66,8 @@ export class SearchbarComponent implements OnInit {
     return filteredRepositories;
   }
 
+  /* Enviar evento con repositorios filtrados */
+  public sentEvent(repositories:Repository[]):void{
+    this.onFilter.emit(repositories);      
+  }
 }

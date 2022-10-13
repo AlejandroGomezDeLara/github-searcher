@@ -1,7 +1,7 @@
 <div class="repositories-searchbar">
     <form class="form" *ngIf="form" [formGroup]="form" (ngSubmit)="filterRepositories()">
         <input class="repo" type="text" placeholder="Buscar repositorio" 
-        formControlName="name" (keyup)="onDelete()">
+        formControlName="name">
         <button class="btn btn-submit" type="submit">Buscar</button>
         <div class="languages" *ngIf="repositories">
             <div class="language" *ngFor="let language of languages">

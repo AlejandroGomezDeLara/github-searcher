@@ -12,10 +12,12 @@ import { GithubService } from 'src/app/services/github.service';
 export class UserSearchbarComponent implements OnInit {
 
   form: FormGroup = new FormGroup({});
-  user!: User;
+  user?: User;
   @Output() onSearch = new EventEmitter<User>();
   @Output() onUserNotFound = new EventEmitter<void>();
-  
+  isLoading:boolean=false;
+  searched:boolean=false;
+
   constructor(private formBuilder:FormBuilder,private githubService:GithubService) { }
 
 
@@ -30,12 +32,23 @@ export class UserSearchbarComponent implements OnInit {
   }
 
   public searchUserAndRepositories():void{
+    this.onSearch.emit(undefined);
+    this.isLoading=true;
     this.githubService.getUserAndRepositories(this.form.value.username).subscribe(res=>{
       this.user=res.user;
-      this.user.repositories=res.repositories; 
-      this.user.languages=this.setLanguages(res.repositories);           
-      this.onSearch.emit(res.user);
+      if(this.user){
+        this.user.repositories=res.repositories; 
+        this.user.languages=this.setLanguages(res.repositories);
+        this.onSearch.emit(res.user);
+      }else{
+        this.onUserNotFound.emit();
+      }
+      this.isLoading=false;
+      this.searched=true;
     },error=>{
+      this.isLoading=false;
+      this.user=undefined;
+      this.searched=true;
       this.onUserNotFound.emit();
     })
   }

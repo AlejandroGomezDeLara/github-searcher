@@ -13,9 +13,8 @@ import { combineLatest } from 'rxjs';
 export class HomeComponent implements OnInit {
 
   repositories?:Repository[];
-  filteredRepositories?:Repository[];
+  filteredRepositories!:Repository[];
   user?:User;
-  searched:boolean=false;
 
   constructor() { }
 
@@ -30,13 +29,15 @@ export class HomeComponent implements OnInit {
 
   public setUser(user:User):void{
     this.user=user;
-    this.repositories=user.repositories;
-    this.filteredRepositories=user.repositories;
+    if(user){
+      this.repositories=user.repositories;
+      if(user.repositories)
+        this.filteredRepositories=user.repositories;
+    }
   }
 
   public setUserNotFound(){
     this.user=undefined;  
-    this.searched=true;
   }
 
 
