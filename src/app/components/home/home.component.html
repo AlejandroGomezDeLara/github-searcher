@@ -1,0 +1,26 @@
+<div class="container">
+
+  <!-- BARRA DE BÚSQUEDA -->
+  <app-user-searchbar (onSearch)="setUser($event)" (onUserNotFound)="setUserNotFound()"></app-user-searchbar>
+
+
+  <div *ngIf="user">
+
+    <!-- USUARIO -->
+    <app-user [user]="user"></app-user>
+
+    <!-- FILTRAR REPO -->
+    <app-searchbar [repositories]="user.repositories" [languages]="user.languages" (onFilter)="filterRespositories($event)"></app-searchbar>
+
+    <!-- REPOS -->
+    <div class="repositories-container">
+      <app-repositories [repositories]="filteredRepositories"></app-repositories>
+    </div>
+  </div>
+
+  <div *ngIf="!user && searched" class="user-not-found">
+    <p>No se encuentra el usuario</p>
+  </div>
+
+
+</div>

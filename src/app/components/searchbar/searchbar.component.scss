@@ -1,0 +1,21 @@
+.repositories-searchbar{
+    margin-top: 55px;
+    text-align: center;
+    width: 50%;
+    float: right;
+    
+    .repo{
+        width: 60%;
+        margin-bottom: 20px;
+        margin-right:10px;
+    }
+    .languages{
+        justify-content: space-evenly;
+        padding:0px 100px 0px 50px;
+        .language{
+            display: inline;
+            margin-right: 5px;
+        }
+    }
+    
+}

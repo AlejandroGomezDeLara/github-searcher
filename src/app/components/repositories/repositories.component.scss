@@ -1,0 +1,18 @@
+.repositories-container{
+    padding:50px;
+    text-align: center;
+    display: block;
+    .repositories{
+        overflow-y:auto;
+        max-height:500px;
+        border-collapse:collapse;
+        width: 100%;
+        th{
+            border-bottom:1px solid black;
+        }
+        td{
+            padding:10px 0px 10px 0px;
+        }
+    }
+    
+}

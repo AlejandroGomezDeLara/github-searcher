@@ -1,0 +1,18 @@
+<div class="repositories-container" >
+    <table class="repositories" (scroll)="onScroll($event)">
+        <tr class="table-header">
+            <th>NOMBRE DEL REPO</th>
+            <th>DESCRIPCIÓN</th>
+            <th>ENLACE AL REPO</th>
+            <th>ESTRELLAS</th>
+            <th>LENGUAJES DE PROGRAMACIÓN</th>
+        </tr>
+        <tr class="repository" *ngFor="let repo of repositories">
+            <td>{{repo.name}}</td>
+            <td>{{repo.description}}</td>
+            <td><a target="_blank" [href]="repo.svn_url">{{repo.svn_url}}</a> </td>
+            <td>{{repo.stargazers_count}}</td>
+            <td>{{repo.language}}</td>
+        </tr>
+    </table>
+</div>

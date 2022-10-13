@@ -1,0 +1,10 @@
+<div class="user">
+  <div class="github-card user-card">
+    <img class="avatar" [src]="user.avatar_url" alt="{{user.login}}" *ngIf="user">
+    <img class="avatar" src="assets/imgs/avatar.jpeg" *ngIf="!user">
+    <p class="name" *ngIf="user">{{user.login}}</p>
+    <p class="name" *ngIf="!user">NOMBRE DE USUARIO</p>
+    <p class="bio" *ngIf="user">{{user.bio}}</p>
+    <p class="bio" *ngIf="!user">BIOGRAFÍA</p>
+  </div>
+</div>

@@ -1,0 +1,7 @@
+<div class="searchbar">
+    <form class="form" *ngIf="form" [formGroup]="form" (ngSubmit)="searchUserAndRepositories()">
+      <input class="username" [formGroup]="form" type="text" placeholder="Buscar usuario de Github"
+        formControlName="username">
+      <button class="btn btn-submit" type="submit" [disabled]="!form.valid">Buscar</button>
+    </form>
+  </div>
